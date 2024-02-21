@@ -79,22 +79,6 @@ mod app {
         let mut led = pins.led.into_push_pull_output();
         led.set_low().unwrap();
 
-        // // Init I2C pins
-        // let sda_pin = gpioa.gpio2.into_mode::<gpio::FunctionI2C>();
-        // let scl_pin = gpioa.gpio3.into_mode::<gpio::FunctionI2C>();
-
-        // // Init I2C itself, using MaybeUninit to overwrite the previously
-        // // uninitialized i2c_ctx variable without dropping its value
-        // // (i2c_ctx definined in init local resources above)
-        // let i2c_tmp: &'static mut _ = ctx.local.i2c_ctx.write(I2C::i2c1(
-        //     ctx.device.I2C1,
-        //     sda_pin,
-        //     scl_pin,
-        //     100.kHz(),
-        //     &mut ctx.device.RESETS,
-        //     &clocks.system_clock,
-        // ));
-
         // Spawn heartbeat task
         heartbeat::spawn().ok();
 
