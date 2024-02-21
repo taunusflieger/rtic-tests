@@ -4,7 +4,7 @@
 
 #[rtic::app(
         device = rp_pico::hal::pac,
-        dispatchers = [TIMER_IRQ_1, SW1_IRQ,]
+        dispatchers = [TIMER_IRQ_1,  SW1_IRQ, SW2_IRQ]
     )]
 mod app {
     use defmt::*;
@@ -119,7 +119,7 @@ mod app {
         }
     }
 
-    #[task(priority = 2)]
+    #[task(priority = 3)]
     async fn bar(_: bar::Context) {
         loop {
             info!("bar");
@@ -127,7 +127,7 @@ mod app {
         }
     }
 
-    #[task(priority = 1)]
+    #[task(priority = 2)]
     async fn baz(_: baz::Context) {
         loop {
             info!("baz");
